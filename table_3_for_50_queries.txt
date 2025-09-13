@@ -1,0 +1,26 @@
+Please create below tables and insert data using BULK INSERT from these files
+ 
+CREATE TABLE Departments (
+   department_id INT PRIMARY KEY,
+   department_name VARCHAR(50)
+);
+ 
+CREATE TABLE Employees (
+   employee_id INT PRIMARY KEY,
+   first_name VARCHAR(50),
+   last_name VARCHAR(50),
+   salary DECIMAL(10,2),
+   hire_date DATE,
+   department_id INT,
+   manager_id INT NULL,
+   FOREIGN KEY (department_id) REFERENCES Departments(department_id),
+   FOREIGN KEY (manager_id) REFERENCES Employees(employee_id)
+);
+ 
+CREATE TABLE Orders (
+   order_id INT PRIMARY KEY,
+   employee_id INT,
+   order_date DATE,
+   amount DECIMAL(10,2),
+   FOREIGN KEY (employee_id) REFERENCES Employees(employee_id)
+);

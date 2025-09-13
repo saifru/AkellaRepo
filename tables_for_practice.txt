@@ -1,0 +1,35 @@
+ CREATE TABLE Departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(100)
+ );
+ CREATE TABLE Employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    job_title VARCHAR(100),
+    salary DECIMAL(10,2),
+    hire_date DATE,
+    department_id INT NULL,
+    manager_id INT NULL,
+    FOREIGN KEY (department_id) REFERENCES Departments(department_id),
+    FOREIGN KEY (manager_id) REFERENCES Employees(employee_id)
+ );
+ CREATE TABLE Customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    contact_email VARCHAR(100)
+ );
+ CREATE TABLE Products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100),
+    price DECIMAL(10,2)
+ );
+ CREATE TABLE Orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    employee_id INT,
+    order_date DATE,
+    amount DECIMAL(10,2),
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
+    FOREIGN KEY (employee_id) REFERENCES Employees(employee_id)
+ );
